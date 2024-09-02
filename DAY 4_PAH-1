@@ -1,0 +1,13 @@
+import React from 'react';
+import LoginDialog from './LoginDialog';
+
+function App() {
+  return (
+    <div className="App">
+      <h1>Welcome to the Login Page</h1>
+      <LoginDialog />
+    </div>
+  );
+}
+
+export default App;
