@@ -1,0 +1,61 @@
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { FormControl, FormLabel, FormControlLabel, Checkbox, Button } from '@mui/material';
+
+const SurveyContainer = styled.div`
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  width: 300px;
+  margin: auto;
+`;
+
+const SubmitButton = styled(Button)`
+  && {
+    margin-top: 20px;
+  }
+`;
+
+function FruitSurvey() {
+  const [selectedFruits, setSelectedFruits] = useState({
+    apple: false,
+    banana: false,
+    cherry: false,
+  });
+
+  const handleChange = (event) => {
+    setSelectedFruits({
+      ...selectedFruits,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
+  const handleSubmit = () => {
+    alert(`Selected Fruits: ${Object.keys(selectedFruits).filter(fruit => selectedFruits[fruit]).join(', ')}`);
+  };
+
+  return (
+    <SurveyContainer>
+      <FormControl component="fieldset">
+        <FormLabel component="legend">Select your favorite fruits:</FormLabel>
+        <FormControlLabel
+          control={<Checkbox checked={selectedFruits.apple} onChange={handleChange} name="apple" />}
+          label="Apple"
+        />
+        <FormControlLabel
+          control={<Checkbox checked={selectedFruits.banana} onChange={handleChange} name="banana" />}
+          label="Banana"
+        />
+        <FormControlLabel
+          control={<Checkbox checked={selectedFruits.cherry} onChange={handleChange} name="cherry" />}
+          label="Cherry"
+        />
+        <SubmitButton variant="contained" color="primary" onClick={handleSubmit}>
+          Submit
+        </SubmitButton>
+      </FormControl>
+    </SurveyContainer>
+  );
+}
+
+export default FruitSurvey;
